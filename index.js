@@ -27,9 +27,9 @@
     var traverse = function (obj, path) {
 
         return path.split(".").reduce(function (prev, current) {
-            if (prev) {
-                return prev[current];
-            }
+            if (!prev) return undefined;
+            if (prev[current] === Object.prototype) return prev;
+            return prev[current];
         }, obj);
 
     };
