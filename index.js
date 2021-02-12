@@ -103,6 +103,9 @@
             set: function (path, val) {
                 //we will retrieve only up to the last path
                 var traversedAlmost = traverseAlmost(obj,path);
+                if(path.includes('__proto__') || path.includes('constructor') || path.includes('prototype')){
+                    return false;
+                }
                 if ( traversedAlmost ) {
                     return traversedAlmost.traversed[traversedAlmost.childPath] = val;
                 } else if ( obj ) {
