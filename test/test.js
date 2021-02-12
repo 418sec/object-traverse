@@ -85,7 +85,7 @@ describe('object traverse tests', function(){
         assert.equal(traverse(objMod).set('hey',1),1);
         assert.equal(traverse(objMod).get('hey'),1);
 
-        assert.equal(traverse(objMod).get('hey2',undefined));
+        assert.equal(traverse(objMod).get('hey2'), undefined);
         assert.equal(traverse(objMod).set('hey2','X'),'X');
         assert.equal(traverse(objMod).get('hey2'),'X');
 
@@ -127,10 +127,10 @@ describe('object traverse tests', function(){
         nested: { x : 'y'}
     };
     it ( 'should properly delete path' , function() {
-        assert.equal(traverse(deleteObj).delete('x'));
+        assert.equal(traverse(deleteObj).delete('x'), undefined);
         assert.equal(traverse(deleteObj).get('x'),undefined);
         assert.equal(traverse(deleteObj).get('nested.x'),'y');
-        assert.equal(traverse(deleteObj).delete('nested.x'));
+        assert.equal(traverse(deleteObj).delete('nested.x'), undefined);
         assert.equal(traverse(deleteObj).get('nested.x'),undefined);
     });
 
