@@ -97,6 +97,14 @@ describe('object traverse tests', function(){
         assert.equal(traverse(objMod).get('subField.newPath.y'),'y');
     });
 
+
+    it('should not allow protopath overwrite', function() {
+      traverse({}).set('__proto__.polluted', true);
+      assert.equal({}.polluted, undefined);
+      traverse({}).set('constructor.prototype.polluted', true);
+      assert.equal({}.polluted, undefined);
+    })
+
     var objFunc = {
         field: function(a) {
             return 1 + a;
